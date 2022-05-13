@@ -1,3 +1,23 @@
+# Using different scopes (function inside function) instead of return itself(generator function)
+# Permutation
+
+def f(s):
+    def Permute(s,tmp):
+        if len(s) <= 1:
+            res.append(tmp+[s[0]])
+        else:
+            for i in range(len(s)):
+            tmp = tmp + [s[i]]
+            subset = s[:i] + s[i+1:]
+            Permute(s,tmp)
+            tmp.remove(s[i])
+    res = []
+    Permute(s)
+    return res
+            
+
+
+
 # LeetCode 216 Combination Sum III
 class Solution:
     def combinationSum3(self, k: int, n: int) -> List[List[int]]:
