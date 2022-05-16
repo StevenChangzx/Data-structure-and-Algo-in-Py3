@@ -1,0 +1,98 @@
+#Letter Combinations of a Phone Number
+
+#backtracking/ recursion
+
+class Solution:
+    def letterCombinations(self, digits: str) -> List[str]:
+        res = []
+        digitToChar={
+            "2":"abc",
+            "3":"def",
+            "4":"ghi",
+            "5":"jkl",
+            "6":"mno",
+            "7":"pqrs",
+            "8":"tuv",
+            "9":"wxyz"
+        }
+        
+        def backtrack(i, curStr):
+            if len(curStr) == len(digits):
+                res.append(curStr)
+                return
+            
+            for c in digitToChar[digits[i]]:
+                backtrack(i + 1 , curStr + c)
+        
+        if digits:
+            backtrack(0,"")
+            
+        return res
+        
+        
+        
+#iterate/ list comprehension
+
+class Solution:
+    def letterCombinations(self, digits: str) -> List[str]:
+        d= {'2':'abc', '3':'def', '4':'ghi', '5':'jkl', '6':'mno', '7':'pqrs', '8':'tuv', '9':'wxyz'}
+        res=['']
+        l=len(digits)
+        if l==0:
+            return []
+        for i in digits:
+            res= [y+x for x in d[i] for y in res]
+        return res
+        
+        
+        
+# DFS
+KEYBOARD={
+        '2':'abc',
+        '3':'def',
+        '4':'ghi',
+        '5':'jkl',
+        '6':'mno',
+        '7':'pqrs',
+        '8':'tuv',
+        '9':'wxyz'
+        
+    }
+    
+class Solution:
+    
+    
+    def letterCombinations(self, digits: str) -> List[str]:
+        if not digits:
+            return []
+        #注意要单独列出，否则空list的结果就是['']
+        coms=[]
+        #self.dfs(digits,0,'',coms)
+    
+        self.dfs(digits,0,[],coms)
+        #如果是用join连接那就是原始类型为list
+        #但是似乎list的空间复杂度好一些诶
+        return coms
+    
+    
+    def dfs(self,digits,index,com,coms):
+        if index == len(digits):
+            coms.append(''.join(com))
+            #此时是com是['a','d']，所以要用join连接
+            return 
+        
+        
+        for letter in KEYBOARD[digits[index]]:
+            com.append(letter)
+            self.dfs(digits,index+1,com,coms)
+            
+            com.pop()
+    '''
+    def dfs(self,digits,index,com,coms):
+        if len(com) == len(digits):
+            coms.append(com)
+            return 
+        
+        for c in KEYBOARD[digits[index]]:
+            self.dfs(digits,index+1, com+c ,coms)
+    '''
