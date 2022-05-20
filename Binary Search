@@ -73,15 +73,14 @@ class Solution:
         return c
             
             
+
 # 852. Peak Index in a Mountain Array
 class Solution:
     def peakIndexInMountainArray(self, arr: List[int]) -> int:
         l=0
         r=len(arr)-1
         x=max(arr)
-        while l<=r:
-            if l==r:
-                return l
+        while l<r:
             m=l+(r-l)//2
             if arr[m]<x and arr[m]<arr[m+1]:
                 l=m+1
@@ -89,9 +88,12 @@ class Solution:
                 return m
             else:
                 r=m-1
-                
- # 69. Sqrt(x)
- class Solution:
+        return l
+
+
+
+# 69. Sqrt(x)
+class Solution:
     def mySqrt(self, x: int) -> int:
         l=0
         r=x
@@ -107,4 +109,23 @@ class Solution:
                     return m                  
             else:
                 return m
+                               
 
+# 744. Find Smallest Letter Greater Than Target
+
+class Solution:
+    def nextGreatestLetter(self, letters: List[str], target: str) -> str:
+        l = 0
+        r = len(letters)-1
+        
+        if letters[-1] <= target:
+            return letters[0]
+        
+        while l < r:
+            mid = l + (r-l)//2
+            if letters[mid]> target:
+                r = mid
+            else:
+                l = mid + 1
+                
+        return letters[r]
