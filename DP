@@ -15,6 +15,15 @@ class Solution:
             s[i]=s[i-1]+s[i-2]
         return s[n]
 
+# 746. Min Cost Climbing Stairs
+class Solution:
+    def minCostClimbingStairs(self, cost: List[int]) -> int:
+        n=len(cost)
+        s=[0]*(n+1)
+        for i in range(2,n+1):
+            s[i]=min(s[i-2]+cost[i-2], s[i-1]+cost[i-1])
+            
+        return s[n]
 
 
 
