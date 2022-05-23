@@ -15,6 +15,7 @@ class Solution:
             s[i]=s[i-1]+s[i-2]
         return s[n]
 
+
 # 746. Min Cost Climbing Stairs
 class Solution:
     def minCostClimbingStairs(self, cost: List[int]) -> int:
@@ -25,6 +26,16 @@ class Solution:
             
         return s[n]
 
+# 198. House Robber
+class Solution:
+    def rob(self, nums: List[int]) -> int:
+        n=len(nums)
+        s=[0]*(n+1)
+        s[1]=nums[0]
+        for i in range(2,n+1):
+            s[i]=max(s[i-2]+nums[i-1], s[i-1])
+            
+        return s[n]
 
 
 # 375. Guess Number Higher or Lower II
