@@ -38,6 +38,28 @@ class Solution:
         return s[n]
 
 
+# 213. House Robber II
+class Solution:
+    def rob(self, nums: List[int]) -> int:
+        n=len(nums)
+        if n==1:
+            return nums[0]
+        else:
+            return max(self.rob_(nums[:-1]),self.rob_(nums[1:]) )
+        
+        
+    def rob_(self, nums: List[int]) -> int:
+        n=len(nums)
+        s=[0]*(n+1)
+        s[1]=nums[0]
+        for i in range(2,n+1):
+            s[i]=max(s[i-2]+nums[i-1], s[i-1])
+            
+        return s[n]
+
+
+
+
 # 375. Guess Number Higher or Lower II
 class Solution:
     def getMoneyAmount(self, n: int) -> int:
