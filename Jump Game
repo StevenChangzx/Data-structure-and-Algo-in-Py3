@@ -1,3 +1,5 @@
+# LeetCode 55 : Jump Game
+
 # Greedy
 class Solution:
     def canJump(self, nums: List[int]) -> bool:
@@ -19,3 +21,18 @@ class Solution:
                 goal=i
             reach = max(reach, i + n)
         return True if goal==0 else False
+
+
+
+# 45. Jump Game II
+
+# Greedy
+class Solution:
+    def jump(self, nums: List[int]) -> int:
+        n, step, end, maxPosition = len(nums), 0, 0, 0
+        for i in range(n-1):
+            maxPosition = max(maxPosition, nums[i] + i)
+            if i == end:
+                end = maxPosition
+                step += 1
+        return step
