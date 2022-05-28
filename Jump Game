@@ -36,3 +36,30 @@ class Solution:
                 end = maxPosition
                 step += 1
         return step
+        
+        
+''' 
+
+这道求最少跳跃次数的问题，也可以用动态规划来做。
+动态规划的核心也是穷举，但是由于重叠子问题以及最优子结构的存在，我们可以记住子问题的最值，并依据此得到原问题的最值。
+由于题目要求是从索引0跳到数组最后一个位置的最少跳跃次数，因此我们可以把状态设置为当前所在的索引i，由dp[i]表示从索引i跳到数组最后一个位置的最少跳跃次数（状态可以从题目要求中来猜）。
+那么在索引i可选的选择为“当前跳几步”。确定好状态和选择后，我们可以确定状态转移数组。
+在索引i的位置能够跳跃的最大长度为nums[i]，那么从索引i可以跳到i+1，...，i+nums[i]。
+如果知道从索引i+1，...，i+nums[i]跳到数组最后一个位置的最少跳跃次数，dp[i]应该取这些这些跳跃次数中的最小值再加1。
+因此状态转移数组为dp[i] = min(dp[i+1],...,dp[i+nums[i])+1（这里需要确保索引不越界）。
+base case为当前就在数组的最后一格，此时不需要跳跃，即有dp[len(nums)-1] = 0。
+   
+'''
+
+
+# dp
+class Solution:
+    def jump(self, nums: List[int]) -> int:
+        dp = [float('inf') for _ in range(len(nums))] #初始化为较大的数
+        dp[-1] = 0
+        for i in range(len(nums)-2,-1,-1): #反向更新
+            for step in range(1,nums[i]+1): #注意step可以取到nums[i]，因此range这里右边界应该写为nums[i]+1
+                if(i+step<len(nums)):
+                    dp[i] = min(dp[i],dp[i+step]+1)
+                    print(dp[i])
+        return dp[0]                
