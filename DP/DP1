@@ -12,6 +12,45 @@ class Solution:
 
         return res
 
+# 122. Best Time to Buy and Sell Stock II
+# Greedy
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        if len(prices) <= 1: return 0
+        
+        greedySolution = 0
+        prevPrice = prices[0]
+        
+        for price in prices:
+            if price - prevPrice > 0:
+                greedySolution += price - prevPrice     
+            
+            prevPrice = price
+        return greedySolution
+        
+#dp
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        s=0
+        res=0
+        m=prices[0]
+
+        for j in range(1,len(prices)):
+            m=min(m,prices[j])
+            if prices[j]>=prices[j-1]:
+                res=max(res,prices[j]-m)
+                if j==len(prices)-1:
+                    s=s+res
+                elif prices[j+1]<prices[j]:
+                    s=s+res
+                    res=0
+                    m=prices[j]
+            
+
+        return s
+
+
+
 # 70. Climbing Stairs
 class Solution:
     def climbStairs(self, n: int) -> int:
