@@ -1,4 +1,4 @@
-# 1014. Best Sightseeing Pair
+# 1014. Best Sightseeing Pair (same as 121. Best Time to Buy and Sell Stock)
 class Solution:
     def maxScoreSightseeingPair(self, values: List[int]) -> int:
         
