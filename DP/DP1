@@ -129,9 +129,9 @@ class Solution:
 # 139. Word Break
 class Solution:
     def wordBreak(self, s: str, wordDict: List[str]) -> bool:
-        wordSet = set(wordDict)		# 变成set可以使查找复杂度降为O(1)
+        wordSet = set(wordDict)		    # 变成set可以使查找复杂度降为O(1)
         dp = [False for i in range(len(s)+1)]
-        dp[0] = True
+        dp[0] = True                    # 预防s==''
         for i in range(1,len(s)+1):
             for j in range(i):
                 if dp[j] and s[j:i] in wordSet:
