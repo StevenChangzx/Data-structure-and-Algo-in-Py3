@@ -23,3 +23,29 @@ class Solution:
                 min_price[i] = min(min_price[i],price - max_profit[i-1] )
                 max_profit[i] = max(max_profit[i], price - min_price[i])
         return max_profit[k]
+
+
+#309. Best Time to Buy and Sell Stock with Cooldown
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        n=len(prices)
+        if n<2:
+            return 0
+        buy, sell = [float('-inf')]*n, [0]*n
+        for i in range(n):
+            buy[i] = max(buy[i-1],sell[i-2]-prices[i])
+            sell[i] = max(sell[i-1], buy[i-1]+prices[i])
+        return sell[-1]
+        
+        
+# 714. Best Time to Buy and Sell Stock with Transaction Fee
+class Solution:
+    def maxProfit(self, prices: List[int], fee: int) -> int:
+        n=len(prices)
+        if n<2:
+            return 0
+        buy, sell = [float('-inf')]*n, [0]*n
+        for i in range(n):
+            buy[i] = max(buy[i-1],sell[i-1]-prices[i])
+            sell[i] = max(sell[i-1], buy[i-1]+prices[i]-fee)
+        return sell[-1]
