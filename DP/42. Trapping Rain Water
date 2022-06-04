@@ -1,0 +1,24 @@
+# My solution
+class Solution:
+    def trap(self, height: List[int]) -> int:
+        m=b=height[0]
+        j=res=0      
+        for i in range(1,len(height)):
+            m = min(m,height[i])
+            
+            if height[i]>=b:
+                if b>m:
+                    res += b*(i-j-1)-sum(height[j+1:i])                    
+                b = height[i]
+                j=i 
+                m=b
+                
+            else:
+                if height[i]==max(height[i:]):
+                    if height[i]>m :
+                        res += height[i]*(i-j-1)-sum(height[j+1:i])
+                    b=height[i]
+                    j=i
+                    m=b
+                         
+        return res
