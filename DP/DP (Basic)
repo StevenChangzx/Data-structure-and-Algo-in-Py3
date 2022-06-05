@@ -200,9 +200,6 @@ class Solution:
         return num[n - 1]
 
 
-''' image pattern '''
-
-
 # 96. Unique Binary Search Trees
 def numTrees(self, n: int) -> int:
         dp = {0:1, 1:1, 2:2}
@@ -214,6 +211,9 @@ def numTrees(self, n: int) -> int:
             dp[i] = num
         return dp[n]
 
+
+
+''' image pattern '''
 
 
 # 931. Minimum Falling Path Sum
