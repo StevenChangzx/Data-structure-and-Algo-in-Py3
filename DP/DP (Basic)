@@ -199,6 +199,10 @@ class Solution:
                 p5 += 1
         return num[n - 1]
 
+
+''' image pattern '''
+
+
 # 96. Unique Binary Search Trees
 def numTrees(self, n: int) -> int:
         dp = {0:1, 1:1, 2:2}
@@ -209,6 +213,7 @@ def numTrees(self, n: int) -> int:
                 num += dp[j]*dp[i-j-1]
             dp[i] = num
         return dp[n]
+
 
 
 # 931. Minimum Falling Path Sum
