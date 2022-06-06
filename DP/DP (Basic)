@@ -301,3 +301,19 @@ class Solution:
                     dp[i][j]=dp[i][j-1]+dp[i-1][j]
                     
         return dp[m-1][n-1]
+
+
+# 119. Pascal's Triangle II
+# 空间优化 ： O(k) space complexity ： https://blog.csdn.net/fuxuemingzhu/article/details/51348629
+
+class Solution(object):
+    def getRow(self, rowIndex):
+        """
+        :type rowIndex: int
+        :rtype: List[int]
+        """
+        res = [1] * (rowIndex + 1)
+        for i in range(2, rowIndex + 1):
+            for j in range(i - 1, 0, -1):
+                res[j] += res[j - 1]
+        return res
