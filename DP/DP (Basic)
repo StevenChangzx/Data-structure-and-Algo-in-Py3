@@ -215,7 +215,7 @@ def numTrees(self, n: int) -> int:
 
 ''' image pattern '''
 
-
+# same as 64. Minimum Path Sum
 # 931. Minimum Falling Path Sum
 class Solution:
     def minFallingPathSum(self, matrix: List[List[int]]) -> int:
