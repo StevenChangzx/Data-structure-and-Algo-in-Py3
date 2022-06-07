@@ -1,4 +1,6 @@
 # 516. Longest Palindromic Subsequence
+# https://blog.csdn.net/fuxuemingzhu/article/details/79572746
+
 class Solution:
     def longestPalindromeSubseq(self, s: str) -> int:
         n = len(s)
