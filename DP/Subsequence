@@ -58,7 +58,25 @@ class Solution:
                 dec[x] = dec[x - 1]
         return max(inc[-1], dec[-1])
 
+# more concise alternative 
+class Solution:
+    def wiggleMaxLength(self, nums: List[int]) -> int:
+        n = len(nums)
+        if n < 2:
+            return n
+        pre = nums[1] - nums[0]
+        res = 1 if pre == 0 else 2
+        for i in range(2, n):
+            dif = nums[i] - nums[i - 1]
+            if (dif > 0 and pre <= 0) or (dif < 0 and pre >= 0):
+                res += 1
+                pre = dif
+        return res
+
+
 # 1143. Longest Common Subsequence
+
+# space optimize
 class Solution:
     def longestCommonSubsequence(self, text1: str, text2: str) -> int:
         l1, l2 = len(text1), len(text2)
