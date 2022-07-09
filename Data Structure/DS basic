@@ -25,3 +25,23 @@ class Solution:
             nums1[k] = nums2[j]
             j, k = j - 1, k - 1
 
+#350. Intersection of Two Arrays II
+class Solution:
+    def intersect(self, nums1: List[int], nums2: List[int]) -> List[int]:
+        d1={}
+        d2={}
+        '''for x in nums1:
+            d1[x]=0
+        for y in nums2:
+            d2[y]=0
+        for x in nums1:
+            d1[x]+=1
+        for y in nums2:
+            d2[y]+=1
+        '''
+        d1,d2=collections.Counter(nums1),collections.Counter(nums2)
+        r=[] 
+        keys=set(d1.keys()).intersection(set(d2.keys()))
+        for i in keys:
+            r+=([i]*min(d1[i],d2[i]))
+        return r
