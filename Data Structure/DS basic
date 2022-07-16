@@ -25,7 +25,17 @@ class Solution:
             nums1[k] = nums2[j]
             j, k = j - 1, k - 1
 
-#350. Intersection of Two Arrays II
+
+# 566. Reshape the Matrix
+class Solution:
+    def matrixReshape(self, mat: List[List[int]], r: int, c: int) -> List[List[int]]:
+        if len(mat) * len(mat[0]) != r * c:
+            return mat
+        p = [mat[i][j] for i in range(len(mat)) for j in range(len(mat[0]))]
+        return [p[i:i+c] for i in range(0, len(p), c)]
+        
+
+# 350. Intersection of Two Arrays II
 class Solution:
     def intersect(self, nums1: List[int], nums2: List[int]) -> List[int]:
         d1={}
